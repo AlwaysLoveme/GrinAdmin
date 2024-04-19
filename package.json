@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "cross-env NODE_ENV=development next dev",
+    "build:prod": "cross-env NODE_ENV=production next build",
+    "build:test": "cross-env NODE_ENV=test next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -12,6 +13,7 @@
     "@ant-design/cssinjs": "^1.19.1",
     "antd": "^5.16.1",
     "next": "14.2.1",
+    "next-intl": "^3.11.3",
     "react": "^18.2.0",
     "react-activation": "^0.12.4",
     "react-dom": "^18.2.0",
@@ -21,6 +23,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "cross-env": "^7.0.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.1",
     "eslint-config-react": "^1.1.7",
