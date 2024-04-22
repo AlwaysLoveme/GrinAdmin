@@ -1,0 +1,1 @@
+type ValueType = "select" | "text" | "excelSelect";

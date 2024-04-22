@@ -1,23 +1,21 @@
 "use client";
-import { useState } from "react";
-import { Input } from "antd";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
+
+import Handsontable from "src/components/Handsontable";
+import message from "src/components/AntdMessage";
 
 import type { FC } from "react";
 
 const UserLoginPage: FC = () => {
-	const [ value, setValue ] = useState<string>("");
-
 	const t = useTranslations("menu");
+
+	useEffect(() => {
+		message("Welcome to the user login page");
+	}, []);
 	return (
 		<>
-			<Input
-				placeholder="请输入"
-				value={value}
-				onChange={(e) => {
-					setValue(e.target.value);
-				}}
-			/>
+			<Handsontable<{text: string}> tableTata={[{ text: "123123" }]} />
 			{t("home")}
 		</>
 	);
