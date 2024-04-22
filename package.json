@@ -7,7 +7,10 @@
     "build:prod": "cross-env NODE_ENV=production next build",
     "build:test": "cross-env NODE_ENV=test next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install",
+    "commit": "git add . && git cz",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.19.1",
@@ -20,16 +23,30 @@
     "react-fiber-keep-alive": "^0.7.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.2.2",
+    "@commitlint/config-conventional": "^19.2.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "commitizen": "^4.3.0",
+    "conventional-changelog-cli": "^4.1.0",
     "cross-env": "^7.0.3",
+    "cz-conventional-changelog-zh": "^0.0.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.1",
     "eslint-config-react": "^1.1.7",
+    "husky": "8.0.3",
+    "lint-staged": "^15.2.2",
     "postcss": "^8",
+    "prettier": "^3.2.5",
+    "pretty-quick": "^4.0.0",
     "sass": "^1.75.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog-zh"
+    }
   }
 }

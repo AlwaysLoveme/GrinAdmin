@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
 import { Input } from "antd";
-import type { FC } from "react";
 import { useTranslations } from "next-intl";
+
+import type { FC } from "react";
 
 const UserLoginPage: FC = () => {
 	const [ value, setValue ] = useState<string>("");
