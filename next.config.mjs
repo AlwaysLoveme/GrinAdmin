@@ -7,7 +7,7 @@ const nextConfig = {
     transpilePackages: [],
     serverRuntimeConfig: {
         logLevel: "debug"
-    }
+    },
 };
 
 export default withNextIntl(nextConfig);

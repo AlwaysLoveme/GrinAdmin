@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+import dbConnect from "src/app/db/connection";
+import mongoose from "mongoose";
+
 import type { HttpResponse } from "./_fetch";
+
 
 type Params = {
     path: string[];
@@ -35,6 +39,28 @@ export function routeHandle(handler: Handler) {
 			}
 			return NextResponse.json({ code: 0, msg: "操作成功", ...data });
 		} catch (e) {
+			return NextResponse.json({
+				code: 500,
+				msg: (e as any).message || "Internal Server Error"
+			}, { status: 200 });
+		}
+	};
+}
+
+
+export function handleWithDB(handler: Handler) {
+	return async function request(req: NextRequest, ctx: { params: Params }) {
+		try {
+			await dbConnect();
+			const data = await handler?.(req, ctx);
+			// await mongoose.connection.close();
+			return NextResponse.json({
+				code: 200,
+				msg: "操作成功",
+				...data
+			});
+		} catch (e) {
+			await mongoose.connection.close();
 			return NextResponse.json({
 				code: 500,
 				msg: (e as any).message || "Internal Server Error"
