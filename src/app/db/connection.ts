@@ -1,4 +1,5 @@
 import mongoose,{ type ConnectOptions } from "mongoose";
+
 declare global {
 	var mongoose: any; // This must be a `var` and not a `let / const`
 }
@@ -17,6 +18,7 @@ let cached = global.mongoose;
 if (!cached) {
 	cached = global.mongoose = { conn: null, promise: null };
 }
+
 
 async function dbConnect() {
 	if (cached.conn) {

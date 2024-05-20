@@ -60,7 +60,7 @@ export function handleWithDB(handler: Handler) {
 				...data
 			});
 		} catch (e) {
-			await mongoose.connection.close();
+			// await mongoose.connection.close();
 			return NextResponse.json({
 				code: 500,
 				msg: (e as any).message || "Internal Server Error"
