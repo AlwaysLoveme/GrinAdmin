@@ -2,8 +2,8 @@ import { cookies } from "next/headers";
 import { type NextRequest } from "next/server";
 
 export type HttpResponse<T = any> = {
-    code: number;
-    msg: string;
+    code?: number;
+    msg?: string;
     data: T;
 };
 export type RequestOptions = {
