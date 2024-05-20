@@ -1,9 +1,9 @@
-import RootLayout from "src/components/Layout";
+import MainLayout from "src/components/Layout";
 import type { FC, PropsWithChildren } from "react";
 
 
 const IndexLayout: FC<PropsWithChildren> = ({ children }) => {
-	return <RootLayout>{children}</RootLayout>;
+	return <MainLayout>{children}</MainLayout>;
 };
 
 export default IndexLayout;

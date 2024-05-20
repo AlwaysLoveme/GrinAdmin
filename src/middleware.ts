@@ -25,5 +25,5 @@ export default function middleware(request: NextRequest) {
 
 export const config = {
 	// Match only internationalized pathnames
-	matcher: [ "/", "/(zh-cn|en-us)/:path*", "/((?!api|_next/static|_next/image|static|robots|sitemap).*)" ]
+	matcher: [ "/", "/(zh-cn|en-us)/:path*", "/((?!api|images|_next/static|_next/image|static|robots|sitemap).*)" ]
 };

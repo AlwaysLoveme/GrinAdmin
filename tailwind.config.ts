@@ -8,8 +8,23 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
+			colors: {
+				primary: "var(--color-primary)",
+			},
 			borderColor: {
 				base: "var(--color-border)"
+			},
+			fontSize: {
+				xs: "var(--text-xs)",
+				md: "var(--text-md)",
+				lg: "var(--text-lg)",
+				xl: "var(--text-xl)",
+				xxl: "var(--text-xxl)",
+			},
+			textColor: {
+				main: "var(--text-color-main)",
+				desc: "var(--text-color-desc)",
+				primary: "var(--text-color-primary)",
 			}
 		},
 	},

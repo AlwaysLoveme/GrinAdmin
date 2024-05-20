@@ -1,6 +1,18 @@
 :root {
+  // 主色
   --color-primary: #03c42c;
-  --page-bg: #fdfdfd;
+  --page-bg: #ffffff;
 
   --color-border: rgba(145, 158, 171, 0.2);
+
+  --text-xs: 12px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+  --text-xxl: 20px;
+
+  --text-color-main: #333;
+  --text-color-desc: #eee;
+  // 高亮色
+  --text-color-primary: var(--color-primary);
 }
