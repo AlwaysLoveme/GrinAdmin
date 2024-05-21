@@ -27,8 +27,10 @@ async function dbConnect() {
 	if (!cached.promise) {
 		const opts: ConnectOptions = {
 			dbName: "grinAdmin",
+			autoCreate: true,
 			bufferCommands: false,
 		};
+		mongoose.set("strictQuery", true);
 		cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
 			return mongoose;
 		});

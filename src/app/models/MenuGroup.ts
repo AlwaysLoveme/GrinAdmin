@@ -7,15 +7,17 @@ export interface MenuGroup extends Document {
 	animated: boolean;
 }
 
+const collection = "menu_group";
+
 const MenuGroupSchema = new Schema<MenuGroup>({
 	group_name: { type: String, required: true },
 	hide_in_menu: { type: Boolean, required: true },
 	keep_alive: { type: Boolean, required: true },
 	animated: { type: Boolean, required: true },
 }, {
+	collection,
 	timestamps: true,
 });
 
-const collectionName = "menu_group";
-const MenuGroup = models.MenuGroup || model<MenuGroup>(collectionName, MenuGroupSchema);
+const MenuGroup = models.MenuGroup || model<MenuGroup>(collection, MenuGroupSchema);
 export default MenuGroup;
