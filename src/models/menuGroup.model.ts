@@ -1,6 +1,7 @@
-import { Schema, Document, model, models } from "mongoose";
+import mongoose from "mongoose";
+import { baseOptions } from "src/shared/schema";
 
-export interface MenuGroup extends Document {
+export interface MenuGroupModel extends mongoose.Document {
 	group_name: string;
 	hide_in_menu: boolean;
 	keep_alive: boolean;
@@ -9,15 +10,15 @@ export interface MenuGroup extends Document {
 
 const collection = "menu_group";
 
-const MenuGroupSchema = new Schema<MenuGroup>({
+const MenuGroupSchema = new mongoose.Schema<MenuGroupModel>({
 	group_name: { type: String, required: true },
 	hide_in_menu: { type: Boolean, required: true },
 	keep_alive: { type: Boolean, required: true },
 	animated: { type: Boolean, required: true },
 }, {
 	collection,
-	timestamps: true,
+	...baseOptions
 });
 
-const MenuGroup = models.MenuGroup || model<MenuGroup>(collection, MenuGroupSchema);
+const MenuGroup = mongoose.models.MenuGroup || mongoose.model<MenuGroupModel>(collection, MenuGroupSchema);
 export default MenuGroup;

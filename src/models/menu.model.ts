@@ -1,6 +1,7 @@
-import { Schema, Document, model, models } from "mongoose";
+import mongoose from "mongoose";
+import { baseOptions } from "src/shared/schema";
 
-export interface Menu extends Document {
+export interface MenuModel extends mongoose.Document {
 	name: string;
 	path: string;
 	hide_in_menu?: boolean;
@@ -11,7 +12,7 @@ export interface Menu extends Document {
 
 
 const collection = "menu";
-const MenuSchema = new Schema<Menu>({
+const MenuSchema = new mongoose.Schema<MenuModel>({
 	name: { type: String, required: [ true, "请输入菜单名称" ], unique: true },
 	path: { type: String, required: [ true, "请输入菜单访问路径" ] },
 	group_id: { type: String, required: false },
@@ -20,15 +21,8 @@ const MenuSchema = new Schema<Menu>({
 	animated: { type: Boolean, required: false },
 }, {
 	collection,
-	timestamps: true,
-	toJSON: {
-		versionKey: false,
-		virtuals: true,
-		transform: (_, ret) => {
-			delete ret._id;
-		},
-	},
+	...baseOptions
 });
 
-const Menu = models.Menu || model<Menu>(collection, MenuSchema);
+const Menu = mongoose.models.Menu as mongoose.Model<MenuModel> || mongoose.model<MenuModel>(collection, MenuSchema);
 export default Menu;

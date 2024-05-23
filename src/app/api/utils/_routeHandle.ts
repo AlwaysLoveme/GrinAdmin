@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import dbConnect from "src/app/db/connection";
-import mongoose from "mongoose";
+import dbConnect from "src/db/connection";
 
 import type { HttpResponse } from "./_fetch";
 
@@ -53,14 +52,12 @@ export function handleWithDB(handler: Handler) {
 		try {
 			await dbConnect();
 			const data = await handler?.(req, ctx);
-			// await mongoose.connection.close();
 			return NextResponse.json({
 				code: 200,
 				msg: "操作成功",
 				...data
 			});
 		} catch (e) {
-			// await mongoose.connection.close();
 			return NextResponse.json({
 				code: 500,
 				msg: (e as any).message || "Internal Server Error"

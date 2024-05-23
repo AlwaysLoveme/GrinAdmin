@@ -1,4 +1,4 @@
-import Menu from "src/app/models/Menu";
+import Menu from "src/models/menu.model";
 import { handleWithDB } from "src/app/api/utils/_routeHandle";
 
 export const GET = handleWithDB(async () => {
