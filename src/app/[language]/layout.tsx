@@ -1,6 +1,6 @@
-import AntdRegistry from "../providers/antdRegistry";
-import IntlClientProvider from "../providers/intlClient";
-import CustomTableProvider from "../providers/antdProConfig";
+import AntdRegistry from "src/providers/antdRegistry";
+import IntlClientProvider from "src/providers/intlClient";
+import CustomTableProvider from "src/providers/antdProConfig";
 
 import type { ReactNode } from "react";
 import type { Metadata } from "next";

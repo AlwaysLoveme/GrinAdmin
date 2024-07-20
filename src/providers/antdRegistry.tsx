@@ -25,7 +25,7 @@ const AntdRegistry: FC<PropsWithChildren> = (props) => {
 		const html = document.documentElement;
 		const colorPrimary = getComputedStyle(html).getPropertyValue("--color-primary");
 		setTheme ({
-			hashed: false,
+			hashed: true,
 			cssVar: { prefix: "grin" },
 			token: {
 				colorPrimary

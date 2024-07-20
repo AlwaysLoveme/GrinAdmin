@@ -2,7 +2,7 @@ import { redirect } from "src/navigation";
 
 
 const Index = () => {
-	return redirect("/index");
+	return redirect("/system/dashboard");
 };
 
 export default Index;
