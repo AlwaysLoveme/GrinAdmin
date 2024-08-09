@@ -9,7 +9,7 @@ const LayoutAside: FC = () => {
 	return (
 		<div className="flex flex-col w-full h-full relative">
 			<ExpandIcon />
-			<div className="flex-center w-full h-[80px] gap-[10px]">
+			<div className="flex-center w-full h-[71px] gap-[10px]">
 				<Image
 					alt=""
 					height={40}
