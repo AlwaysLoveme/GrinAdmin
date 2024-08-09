@@ -6,7 +6,7 @@ import type  { FC } from "react";
 const ExpandIcon: FC<{onClick?: () => void}> = ({ onClick }) => {
 	return (
 		<p
-			className="absolute top-12 right-[-13px] bg-white w-[26px] h-[26px] border-dashed border border-base rounded-full flex-center cursor-pointer"
+			className="absolute top-6 right-[-13px] bg-white w-[26px] h-[26px] border-dashed border border-base rounded-full flex-center cursor-pointer"
 			onClick={onClick}
 		>
 			<Icon
