@@ -21,13 +21,6 @@ module.exports = {
     "no-unmodified-loop-condition": "error", // 禁用一成不变的循环条件
     "no-unused-expressions": "off", // 禁止出现未使用过的表达式
     "object-curly-spacing": ["error", "always"], // 对象前后需要空格
-    "array-bracket-spacing": [
-      "error",
-      "always",
-      {
-        objectsInArrays: false,
-      },
-    ], // 是否允许非空数组里面有多余的空格
     "arrow-parens": "off", // 箭头函数用小括号括起来
     "block-spacing": ["error", "always"], // =>的前/后括号
     "callback-return": "warn", // 避免多次调用回调
