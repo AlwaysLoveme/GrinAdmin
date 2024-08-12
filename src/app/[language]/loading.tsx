@@ -1,9 +1,3 @@
-import type { FC } from "react";
+import ScreenLoading from "src/components/ScreenLoading";
 
-const PageLoading: FC = () => {
-	return (
-		<div>loading...</div>
-	);
-};
-
-export default PageLoading;
+export default ScreenLoading;

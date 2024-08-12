@@ -16,18 +16,20 @@ export interface MenuModel extends mongoose.Document {
   /**
    * 是否删除
    */
-  is_deleted?: boolean;
+  isDeleted?: boolean;
   /**
    * 是否在菜单中隐藏
    */
-  hide_in_menu?: boolean;
+  hideInMenu?: boolean;
   /**
    * 排序
    */
   order?: number;
-  keep_alive?: boolean;
+  keepAlive?: boolean;
   animated?: boolean;
-  parent_id?: mongoose.Types.ObjectId;
+  parentId?: mongoose.Types.ObjectId;
+  createdAt: string;
+  updatedAt: string;
   children?: MenuModel[];
 }
 
@@ -53,12 +55,12 @@ const MenuSchema = new mongoose.Schema<MenuModel>(
       ],
     },
     name: { type: String, required: [true, "分组名称是必填项"], unique: true },
-    hide_in_menu: { type: Boolean, required: false },
-    is_deleted: { type: Boolean, required: false },
-    keep_alive: { type: Boolean, required: false },
-    animated: { type: Boolean, required: false },
+    hideInMenu: { type: Boolean, required: false, default: false, },
+    isDeleted: { type: Boolean, required: false, default: false },
+    keepAlive: { type: Boolean, required: false, default: true },
+    animated: { type: Boolean, required: false, default: true },
     order: { type: Number, required: false, default: 0 },
-    parent_id: { type: mongoose.Schema.Types.ObjectId, ref: "Menu" },
+    parentId: { type: mongoose.Types.ObjectId, ref: "Menu" },
   },
   {
     collection,

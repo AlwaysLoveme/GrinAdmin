@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { cloneDeep as lodashClone } from "lodash-es";
 
 export const cloneDeep = <T>(data: T) => lodashClone(data);
@@ -35,3 +36,7 @@ export const nonNullableObject = <T extends IObject>(record: T): T => {
 	};
 	return handleObject(cloneObject);
 };
+
+export const dateTimeFormat = (date: dayjs.Dayjs | string | Date | number) => {
+	return dayjs(date).format("YYYY-MM-DD HH:mm:ss");
+}

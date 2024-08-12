@@ -1,4 +1,6 @@
+import { cloneDeep } from "lodash-es";
 import Menu from "src/models/menu.model";
+import { dateTimeFormat } from "src/shared/utils";
 
 import type { MenuModel } from "src/models/menu.model";
 
@@ -18,6 +20,7 @@ const initialMenu: MenuModel[] = [
 export const handleInitialMenu = async () => {
   const createGroup = await Menu.create<MenuModel[]>(initialMenu);
   const overviewMenu = createGroup.find((menu) => menu.name === "概览");
+  const subMenus: MenuModel[] = [];
   if (overviewMenu) {
     // 创建子菜单
     const childMenu = new Menu({
@@ -25,27 +28,42 @@ export const handleInitialMenu = async () => {
       type: "item",
       name: "工作台",
       path: "/system/dashboard",
-      parent_id: overviewMenu.id,
+      parentId: overviewMenu.id,
     });
 
     // 保存子菜单
-    await childMenu.save();
+    const submenu = await childMenu.save();
+    subMenus.push(submenu);
   }
-  return await Menu.find({});
+  return [...createGroup, ...subMenus];
 };
 
 export function formatMenus(menus: MenuModel[]) {
-  const menuMap: Record<string, MenuModel> = {};
-  const menusList: MenuModel[] = [];
+  
+  const cloneMenus = cloneDeep(menus).map(item => ({
+    id: item._id?.toString(),
+    type: item.type,
+    name: item.name,
+    path: item.path,
+    isDeleted: item.isDeleted,
+    hideInMenu: item.hideInMenu,
+    order: item.order,
+    keepAlive: item.keepAlive,
+    animated: item.animated,
+    parentId: item.parentId?.toString(),
+    createdAt: dateTimeFormat(item.createdAt),
+    updatedAt: dateTimeFormat(item.updatedAt),
+  } as MenuModel));
 
-  menus.forEach((menu) => {
-    menuMap[menu.id] = menu;
+  const menuMap: Record<string, (typeof cloneMenus)[number]> = {};
+  const menusList: (typeof cloneMenus) = [];
+  
+  cloneMenus.forEach((menu) => {
+    menuMap[menu.id as string] = menu;
   });
 
-  console.log(menuMap, "===");
-
-  for (const menu of menus) {
-    const parent = menuMap[menu.parent_id as unknown as string];
+  for (const menu of cloneMenus) {
+    const parent = menuMap[menu.parentId as unknown as string];
     if (parent) {
       parent.children = parent.children || [];
       parent.children.push(menu);
@@ -53,6 +71,5 @@ export function formatMenus(menus: MenuModel[]) {
       menusList.push(menu);
     }
   }
-
   return menusList;
 }

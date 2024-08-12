@@ -140,4 +140,5 @@ class HttpClient {
 }
 
 const httpClient = new HttpClient("/api");
+export const serverClient = new HttpClient(process.env.SERVER_API!);
 export default httpClient;

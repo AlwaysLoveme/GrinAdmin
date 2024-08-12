@@ -1,3 +1,5 @@
+import type { MenuModel } from "src/models/menu.model";
+
 export type RouteTab = {
   name: string;
   title: string;
@@ -8,10 +10,12 @@ export type RouteTab = {
 };
 export type SystemState = {
   routeTabs: RouteTab[];
+  menuList: MenuModel[];
 };
 
 const systemInitialState: SystemState = {
   routeTabs: [],
+  menuList: []
 };
 
 export default systemInitialState;

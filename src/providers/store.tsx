@@ -13,7 +13,7 @@ export const StoreProvider = ({
   children,
   initialState = initialStoreState,
 }: PropsWithChildren<{ initialState?: State }>) => {
-  const storeRef = useRef<StoreApi<Store>>();
+  const storeRef = useRef<StoreApi<Store> | null>(null);
   if (!storeRef.current) {
     storeRef.current = store(initialState);
   }

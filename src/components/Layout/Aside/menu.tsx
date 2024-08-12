@@ -1,12 +1,14 @@
 "use client";
-import { useState, useEffect } from "react";
-import { Link } from "src/navigation";
-import { usePathname } from "src/navigation";
-import type { MenuProps } from "antd";
 import { Menu } from "antd";
+import { useState, useEffect, useMemo } from "react";
+
 import styles from "./index.module.scss";
+import { usePathname } from "src/navigation";
+import { MenuModel } from "src/models/menu.model";
+import { useAdminStore } from "src/providers/store";
 
 import type { FC } from "react";
+import type { MenuProps } from "antd";
 
 type MenuKeys = {
   openKeys: string[];
@@ -14,6 +16,7 @@ type MenuKeys = {
 };
 
 const MenuArea: FC = () => {
+  const { menuList = [] } = useAdminStore();
   const pathname = usePathname();
   const [menuKeys, setMenuKeys] = useState<MenuKeys>({
     selectedKeys: [],
@@ -27,36 +30,20 @@ const MenuArea: FC = () => {
     });
   }, [pathname]);
 
-  const items: MenuProps["items"] = [
-    {
-      type: "group",
-      label: "概览",
-      children: [
-        {
-          label: <Link href="/system/dashboard">工作台</Link>,
-          key: "/system/dashboard",
-        },
-        {
-          label: <Link href="/system/menu">菜单管理</Link>,
-          key: "/system/menu",
-        },
-        {
-          label: <Link href="/system/page-generate">页面管理</Link>,
-          key: "/system/page-generate",
-        },
-      ],
-    },
-    {
-      key: "/system",
-      label: "系统设置",
-      children: [
-        {
-          label: <Link href="/system/menu">菜单管理</Link>,
-          key: "/system/menu",
-        },
-      ],
-    },
-  ];
+  const items = useMemo<MenuProps["items"]>(() => {
+    const formatMenus = (menuData: MenuModel[]): MenuProps["items"] => {
+      return menuData.map(
+        (item) =>
+          ({
+            key: item.path,
+            label: item.name,
+            type: item.type,
+            children: item.children ? formatMenus(item.children) : undefined,
+          }) as any,
+      );
+    };
+    return formatMenus(menuList);
+  }, [menuList]);
   return (
     <Menu
       mode="inline"

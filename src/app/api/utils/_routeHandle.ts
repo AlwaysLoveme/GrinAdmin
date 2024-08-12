@@ -78,6 +78,7 @@ export function handleWithDB(handler: Handler) {
       return NextResponse.json(
         {
           code: 500,
+          data: null,
           msg: errorMessage || "Internal Server Error",
         },
         { status: 200 },

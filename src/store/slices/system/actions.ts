@@ -5,6 +5,7 @@ import type { SystemState } from "./state";
 
 export type SystemActions = {
   setRouteTabs: (cb: (tabs: SystemState["routeTabs"]) => SystemState["routeTabs"]) => void;
+  setMenuList: (cb: (menuList: SystemState["menuList"]) => SystemState["menuList"]) => void;
 };
 
 const systemAction: StateCreator<SystemState & SystemActions, [], [], SystemActions> = (
@@ -17,6 +18,12 @@ const systemAction: StateCreator<SystemState & SystemActions, [], [], SystemActi
       routeTabs: [...cb(cloneDeep(routeTabs))],
     });
   },
+  setMenuList(cb) {
+    const { menuList = [] } = get();
+    set({
+      menuList: [...cb(cloneDeep(menuList))],
+    });
+  }
 });
 
 export default systemAction;
