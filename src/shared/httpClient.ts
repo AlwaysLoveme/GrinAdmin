@@ -78,7 +78,7 @@ class HttpClient {
     let requestURL = url;
     if (requestOptions.method?.toUpperCase() === "GET" && data) {
       const params = new URLSearchParams(data as IObject);
-      requestURL = `${requestURL}?${params.toString()}`;
+      requestURL = params.toString() ? `${requestURL}?${params.toString()}` : requestURL;
     }
     const formatURL = `${this.baseUrl}${requestURL}`;
     const abortController = new AbortController();
@@ -140,5 +140,5 @@ class HttpClient {
 }
 
 const httpClient = new HttpClient("/api");
-export const serverClient = new HttpClient(process.env.SERVER_API!);
+export const serverClient = new HttpClient(process.env.NEXT_PUBLIC_SERVER_API!);
 export default httpClient;

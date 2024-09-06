@@ -3,7 +3,7 @@ import type { MenuModel } from "src/models/menu.model";
 
 export function getMenuList() {
   return serverClient.request<MenuModel[]>(
-    "/menu",
+    "/admin/menu",
     {},
     {
       method: "GET",

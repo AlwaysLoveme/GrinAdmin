@@ -11,9 +11,9 @@ const localEnv = fs.readFileSync(localEnvPath, "utf-8");
 const newLocalEnv = localEnv
   .split("\n")
   .map((line) => {
-    if (line.startsWith("SERVER_API=")) {
+    if (line.startsWith("NEXT_PUBLIC_SERVER_API=")) {
       // Step 3: Modify the SERVER_API value
-      return `SERVER_API=${serverAPI}`;
+      return `NEXT_PUBLIC_SERVER_API=${serverAPI}`;
     }
     return line;
   })

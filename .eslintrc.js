@@ -14,7 +14,7 @@ module.exports = {
     "react-refresh/only-export-components": ["off", { allowConstantExport: true }],
     "@typescript-eslint/ban-ts-comment": 0,
     "@typescript-eslint/no-explicit-any": 0,
-    "@typescript-eslint/no-unused-vars": 2,
+    "@typescript-eslint/no-unused-vars": 1,
     "@typescript-eslint/no-var-requires": 2,
     quotes: [2, "double", { allowTemplateLiterals: true }],
     eqeqeq: 2, // 要求使用 === 和 !==

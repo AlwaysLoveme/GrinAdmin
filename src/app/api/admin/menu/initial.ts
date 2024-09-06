@@ -39,25 +39,27 @@ export const handleInitialMenu = async () => {
 };
 
 export function formatMenus(menus: MenuModel[]) {
-  
-  const cloneMenus = cloneDeep(menus).map(item => ({
-    id: item._id?.toString(),
-    type: item.type,
-    name: item.name,
-    path: item.path,
-    isDeleted: item.isDeleted,
-    hideInMenu: item.hideInMenu,
-    order: item.order,
-    keepAlive: item.keepAlive,
-    animated: item.animated,
-    parentId: item.parentId?.toString(),
-    createdAt: dateTimeFormat(item.createdAt),
-    updatedAt: dateTimeFormat(item.updatedAt),
-  } as MenuModel));
+  const cloneMenus = cloneDeep(menus).map(
+    (item) =>
+      ({
+        id: item._id?.toString(),
+        type: item.type,
+        name: item.name,
+        path: item.path,
+        isDeleted: item.isDeleted,
+        hideInMenu: item.hideInMenu,
+        order: item.order,
+        keepAlive: item.keepAlive,
+        animated: item.animated,
+        parentId: item.parentId,
+        createdAt: dateTimeFormat(item.createdAt),
+        updatedAt: dateTimeFormat(item.updatedAt),
+      }) as MenuModel,
+  );
 
   const menuMap: Record<string, (typeof cloneMenus)[number]> = {};
-  const menusList: (typeof cloneMenus) = [];
-  
+  const menusList: typeof cloneMenus = [];
+
   cloneMenus.forEach((menu) => {
     menuMap[menu.id as string] = menu;
   });

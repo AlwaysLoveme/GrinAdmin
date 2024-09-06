@@ -15,7 +15,7 @@ const RootLayout: FC<PropsWithChildren> = (props) => {
       <main className="flex-1 overflow-hidden h-full flex flex-col">
         <Header />
         <RouteTabs />
-        <div className="flex-1 p-[24px]">
+        <div className="flex-1 p-4">
           <AnimatePresence
             initial={true}
             mode="wait"
