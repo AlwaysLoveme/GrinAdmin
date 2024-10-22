@@ -22,6 +22,7 @@ if (!cached) {
 
 async function dbConnect() {
   const readyState = mongoose.connection.readyState;
+  // 确保数据库是连接状态
   if (cached.connect && readyState === 1) {
     return cached.connect;
   }

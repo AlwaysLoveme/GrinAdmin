@@ -6,6 +6,7 @@ import {
 } from "src/providers";
 
 import { getMenuList } from "./service";
+import ToastComponent from "src/components/Toast";
 
 import type { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
@@ -44,7 +45,10 @@ export default async function RootLayout({
         >
           <IntlClientProvider>
             <AntdRegistryProvider>
-              <AntdProConfigProvider>{children}</AntdProConfigProvider>
+              <AntdProConfigProvider>
+                {children}
+                <ToastComponent />
+              </AntdProConfigProvider>
             </AntdRegistryProvider>
           </IntlClientProvider>
         </StoreProvider>
