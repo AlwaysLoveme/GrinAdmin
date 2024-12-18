@@ -1,5 +1,5 @@
 "use client";
-import { type StoreApi, useStore } from "zustand";
+import { type StoreApi, useStore as useCoreStore } from "zustand";
 import { createContext, useContext, useRef } from "react";
 
 import initialStoreState from "src/store/initial";
@@ -21,14 +21,18 @@ export const StoreProvider = ({
   return <StoreContext.Provider value={storeRef.current}>{children}</StoreContext.Provider>;
 };
 
-export function useAdminStore(): Store;
-export function useAdminStore<T>(selector: (state: Store) => T): T;
-export function useAdminStore<T>(selector?: (store: Store) => T): T {
+export function useStore(): Store;
+export function useStore<T>(selector: (state: Store) => T): T;
+export function useStore<T>(selector?: (store: Store) => T): T {
   const counterStoreContext = useContext(StoreContext);
 
   if (!counterStoreContext) {
     throw new Error(`useAdminStore must be use within ChatStoreProvider`);
   }
 
-  return useStore(counterStoreContext, selector!);
+  return useCoreStore(counterStoreContext, selector!);
 }
+
+export const useStoreActions = () => useStore((state) => state.actions);
+export const useRouteTabs = () => useStore((state) => state.routeTabs);
+export const useMenus = () => useStore((state) => state.menuList);

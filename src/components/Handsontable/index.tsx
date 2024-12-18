@@ -57,7 +57,6 @@ const Handsontable = <DataType extends Record<string, any> = DefaultDataType>(
       afterChange={(changes, source) => {
         afterChange?.(changes, source);
         const data = tableTata.filter((item) => !!item.text);
-        console.log(data, "tableTata");
         onChange?.(data as DataType[]);
       }}
     />

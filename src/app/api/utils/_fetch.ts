@@ -32,7 +32,8 @@ export async function serverFetch<T = any>(url: string, opt: RequestOptions = {}
     data,
     baseURL = process.env.NEXT_PUBLIC_SERVER_API,
   } = opt;
-  const token = cookies().get("Authorization");
+  const cookie = await cookies();
+  const token = cookie.get("Authorization");
   const defaultRequestInit: RequestInit = {
     method: "GET",
     credentials: "include",

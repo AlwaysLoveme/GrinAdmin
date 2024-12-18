@@ -5,7 +5,7 @@ import { Dropdown } from "antd";
 import { Icon } from "@iconify/react";
 import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable";
-import { usePathname } from "src/navigation";
+import { usePathname } from "src/i18n/routing";
 
 import type { FC } from "react";
 import type { MenuProps } from "antd";

@@ -1,8 +1,7 @@
 "use client";
 import LayoutAside from "./Aside";
 import Header from "./Header";
-import RouteTabs from "../RouteTabs";
-import { AnimatePresence } from "framer-motion";
+import RouteTabs from "./RouteTabs";
 
 import type { FC, PropsWithChildren } from "react";
 
@@ -14,14 +13,7 @@ const RootLayout: FC<PropsWithChildren> = (props) => {
       </aside>
       <main className="flex-1 overflow-hidden h-full flex flex-col">
         <Header />
-        <RouteTabs />
-        <div className="flex-1 p-4">
-          <AnimatePresence
-            initial={true}
-            mode="wait"
-            {...props}
-          />
-        </div>
+        <RouteTabs {...props} />
       </main>
     </section>
   );

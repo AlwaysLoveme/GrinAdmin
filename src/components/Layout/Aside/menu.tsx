@@ -3,9 +3,9 @@ import { Menu } from "antd";
 import { useState, useEffect, useMemo } from "react";
 
 import styles from "./index.module.scss";
-import { usePathname } from "src/navigation";
+import { usePathname } from "src/i18n/routing";
 import { MenuModel } from "src/models/menu.model";
-import { useAdminStore } from "src/providers/store";
+import { useMenus } from "src/providers/store";
 
 import type { FC } from "react";
 import type { MenuProps } from "antd";
@@ -16,7 +16,7 @@ type MenuKeys = {
 };
 
 const MenuArea: FC = () => {
-  const { menuList = [] } = useAdminStore();
+  const menuList = useMenus();
   const pathname = usePathname();
   const [menuKeys, setMenuKeys] = useState<MenuKeys>({
     selectedKeys: [],

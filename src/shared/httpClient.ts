@@ -122,8 +122,8 @@ class HttpClient {
     }
     return response;
   }
-  handleErrorResponse(response: Response) {
-    console.log(response);
+  handleErrorResponse(_response: Response) {
+    // console.log(response);
   }
   handleResponse(options: {
     response: Response;
@@ -135,7 +135,7 @@ class HttpClient {
     };
     fetchTime: number;
   }) {
-    console.log(options);
+    // console.log(options);
   }
 }
 

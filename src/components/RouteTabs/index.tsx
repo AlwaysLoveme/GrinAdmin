@@ -3,8 +3,8 @@ import clsx from "classnames";
 import { Icon } from "@iconify/react";
 import { useState, useRef, useEffect } from "react";
 
-import { useAdminStore } from "src/providers/store";
-import { usePathname, useRouter } from "src/navigation";
+import { useRouteTabs, useStoreActions } from "src/providers/store";
+import { usePathname, useRouter } from "src/i18n/routing";
 
 import { Mousewheel } from "swiper/modules";
 import { Swiper as SwiperCore } from "swiper";
@@ -23,10 +23,11 @@ import type { FC } from "react";
 import type { DragEndEvent, DragStartEvent } from "@dnd-kit/core";
 
 const KeepAliveTabs: FC = () => {
-  const navigate = useRouter();
   const pathname = usePathname();
+  const navigate = useRouter();
 
-  const { routeTabs, setRouteTabs } = useAdminStore();
+  const { setRouteTabs } = useStoreActions();
+  const routeTabs = useRouteTabs();
 
   const [activeId, setActiveId] = useState<string | number>("");
   const currentTab = routeTabs.find((tab) => tab.path === activeId);

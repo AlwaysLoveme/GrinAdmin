@@ -1,9 +1,6 @@
-import {
-  StoreProvider,
-  IntlClientProvider,
-  AntdProConfigProvider,
-  AntdRegistryProvider,
-} from "src/providers";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
+import { StoreProvider, AntdProConfigProvider, AntdRegistryProvider } from "src/providers";
 
 import { getMenuList } from "./service";
 import ToastComponent from "src/components/Toast";
@@ -28,14 +25,15 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({
   children,
-  params: { language = "zh-cn" },
 }: Readonly<{
   children: ReactNode;
-  params: LanguageParams;
 }>) {
   const { data = [] } = await getMenuList();
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang={language}>
+    <html lang={locale}>
       <body id="grin-app">
         <StoreProvider
           initialState={{
@@ -43,14 +41,14 @@ export default async function RootLayout({
             routeTabs: [],
           }}
         >
-          <IntlClientProvider>
+          <NextIntlClientProvider messages={messages}>
             <AntdRegistryProvider>
               <AntdProConfigProvider>
                 {children}
                 <ToastComponent />
               </AntdProConfigProvider>
             </AntdRegistryProvider>
-          </IntlClientProvider>
+          </NextIntlClientProvider>
         </StoreProvider>
       </body>
     </html>

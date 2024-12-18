@@ -1,3 +1,4 @@
+"use client";
 import clsx from "classnames";
 import SimpleBarCore from "simplebar-core";
 import SimpleBar from "simplebar-react";
