@@ -4,9 +4,7 @@ import { getLocale } from "next-intl/server";
 const Index = async () => {
   const locale = await getLocale();
   return redirect({
-    href: {
-      pathname: "/system/dashboard",
-    },
+    href: "/system/dashboard",
     locale,
   });
 };

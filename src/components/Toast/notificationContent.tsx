@@ -1,10 +1,10 @@
 import { Tag } from "antd";
 import type { FC, PropsWithChildren, ReactNode } from "react";
 
-export type NotificationContentProps = {
+export interface NotificationContentProps {
   tag?: ReactNode;
   title?: string;
-};
+}
 const NotificationContent: FC<PropsWithChildren<NotificationContentProps>> = (props) => {
   const { tag, title = "提示" } = props;
   return (

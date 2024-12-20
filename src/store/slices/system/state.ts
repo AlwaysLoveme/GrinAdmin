@@ -1,21 +1,21 @@
 import type { MenuModel } from "src/models/menu.model";
 
-export type RouteTab = {
+export interface RouteTab {
   name: string;
   title: string;
   path: string;
   routeOptions?: {
     query?: Record<string, any>;
   };
-};
-export type SystemState = {
+}
+export interface SystemState {
   routeTabs: RouteTab[];
   menuList: MenuModel[];
-};
+}
 
 const systemInitialState: SystemState = {
   routeTabs: [],
-  menuList: []
+  menuList: [],
 };
 
 export default systemInitialState;

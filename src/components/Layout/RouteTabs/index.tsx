@@ -5,7 +5,7 @@ import { usePathname } from "src/i18n/routing";
 
 import { FC, PropsWithChildren } from "react";
 
-const RouteTabs: FC<PropsWithChildren> = (props) => {
+const RouteTabs: FC<PropsWithChildren> = () => {
   const pathname = usePathname();
   console.log(pathname);
   return (

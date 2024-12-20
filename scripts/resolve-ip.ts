@@ -2,6 +2,12 @@ import ip from "ip";
 import fs from "fs";
 import path from "path";
 
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const ipAddress = ip.address();
 
 const serverAPI = `http://${ipAddress}:3000/api/admin`;

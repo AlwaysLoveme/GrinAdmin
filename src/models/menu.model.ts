@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 import { baseOptions } from "src/shared/schema";
 
 const typeEnums = ["group", "item", "submenu", "divider"] as const;
@@ -49,6 +49,7 @@ const MenuSchema = new mongoose.Schema<MenuModel>(
       type: String,
       required: [
         function () {
+          // eslint-disable-next-line no-invalid-this
           return this.type === "item";
         },
         "路径是必填项",
@@ -68,6 +69,7 @@ const MenuSchema = new mongoose.Schema<MenuModel>(
   },
 );
 
-const Menu = mongoose.models.Menu || mongoose.model<MenuModel>(collection, MenuSchema);
+const Menu =
+  (mongoose.models.Menu as Model<MenuModel>) || mongoose.model<MenuModel>(collection, MenuSchema);
 
 export default Menu;

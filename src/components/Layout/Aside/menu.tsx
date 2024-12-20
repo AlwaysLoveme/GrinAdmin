@@ -10,10 +10,10 @@ import { useMenus } from "src/providers/store";
 import type { FC } from "react";
 import type { MenuProps } from "antd";
 
-type MenuKeys = {
+interface MenuKeys {
   openKeys: string[];
   selectedKeys: string[];
-};
+}
 
 const MenuArea: FC = () => {
   const menuList = useMenus();
@@ -44,6 +44,7 @@ const MenuArea: FC = () => {
     };
     return formatMenus(menuList);
   }, [menuList]);
+
   return (
     <Menu
       mode="inline"
@@ -51,7 +52,9 @@ const MenuArea: FC = () => {
       items={items}
       openKeys={menuKeys.openKeys}
       selectedKeys={menuKeys.selectedKeys}
-      onOpenChange={(openKeys) => setMenuKeys({ ...menuKeys, openKeys })}
+      onOpenChange={(openKeys) => {
+        setMenuKeys({ ...menuKeys, openKeys });
+      }}
     />
   );
 };

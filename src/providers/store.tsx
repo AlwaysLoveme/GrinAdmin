@@ -21,16 +21,14 @@ export const StoreProvider = ({
   return <StoreContext.Provider value={storeRef.current}>{children}</StoreContext.Provider>;
 };
 
-export function useStore(): Store;
-export function useStore<T>(selector: (state: Store) => T): T;
-export function useStore<T>(selector?: (store: Store) => T): T {
+export function useStore<T>(selector: (store: Store) => T): T {
   const counterStoreContext = useContext(StoreContext);
 
   if (!counterStoreContext) {
     throw new Error(`useAdminStore must be use within ChatStoreProvider`);
   }
 
-  return useCoreStore(counterStoreContext, selector!);
+  return useCoreStore(counterStoreContext, selector);
 }
 
 export const useStoreActions = () => useStore((state) => state.actions);

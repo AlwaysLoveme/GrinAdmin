@@ -8,9 +8,9 @@ import "./index.scss";
 registerAllModules();
 registerLanguageDictionary(zhCN);
 
-type DefaultDataType = {
+interface DefaultDataType {
   text: string;
-};
+}
 export type HandsontableProps<DataType extends Record<string, any> = DefaultDataType> = {
   title?: string;
   tableTata?: DataType[];

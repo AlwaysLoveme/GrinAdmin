@@ -3,12 +3,12 @@ import type { StateCreator } from "zustand/vanilla";
 
 import type { SystemState } from "./state";
 
-export type SystemActions = {
+export interface SystemActions {
   actions: {
     setRouteTabs: (cb: (tabs: SystemState["routeTabs"]) => SystemState["routeTabs"]) => void;
     setMenuList: (cb: (menuList: SystemState["menuList"]) => SystemState["menuList"]) => void;
   };
-};
+}
 
 const systemAction: StateCreator<SystemState & SystemActions, [], [], SystemActions> = (
   set,

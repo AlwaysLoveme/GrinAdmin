@@ -1,4 +1,4 @@
-import mongoose, { type ConnectOptions } from "mongoose";
+import mongoose, { type ConnectOptions, ConnectionStates } from "mongoose";
 
 declare global {
   // eslint-disable-next-line no-var
@@ -8,6 +8,7 @@ declare global {
   }; // This must be a `var` and not a `let / const`
 }
 
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const MONGODB_URI = process.env.MONGODB_URI!;
 
 if (!MONGODB_URI) {
@@ -23,10 +24,10 @@ if (!cached) {
 async function dbConnect() {
   const readyState = mongoose.connection.readyState;
   // 确保数据库是连接状态
-  if (cached.connect && readyState === 1) {
+  if (cached.connect && readyState === ConnectionStates.connected) {
     return cached.connect;
   }
-  if (!cached.promise || readyState === 0) {
+  if (!cached.promise || readyState === ConnectionStates.disconnected) {
     const opts: ConnectOptions = {
       dbName: "grinAdmin",
       autoCreate: true,

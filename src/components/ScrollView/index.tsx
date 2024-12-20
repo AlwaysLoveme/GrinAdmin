@@ -10,11 +10,11 @@ import "./index.scss";
 import type { PropsWithChildren, CSSProperties, HTMLAttributes } from "react";
 import type { SimpleBarOptions } from "simplebar-core";
 
-export type ScrollViewRef = {
-  scrollEle: HTMLElement | null;
+export interface ScrollViewRef {
+  scrollEle?: HTMLElement | null;
   scrollInstance: SimpleBarCore | null;
   scrollToBottom: (behavior?: ScrollBehavior) => void;
-};
+}
 export type ScrollViewProps = PropsWithChildren<
   {
     options?: SimpleBarOptions;
@@ -45,7 +45,7 @@ const ScrollView = forwardRef<ScrollViewRef, ScrollViewProps>((props, ref) => {
   useImperativeHandle(
     ref,
     () => ({
-      scrollEle: scrollViewInstance.current?.getScrollElement() as HTMLElement,
+      scrollEle: scrollViewInstance.current?.getScrollElement(),
       scrollInstance: scrollViewInstance.current,
       scrollToBottom,
     }),

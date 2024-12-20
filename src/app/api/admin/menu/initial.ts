@@ -57,7 +57,7 @@ export function formatMenus(menus: MenuModel[]) {
       }) as MenuModel,
   );
 
-  const menuMap: Record<string, (typeof cloneMenus)[number]> = {};
+  const menuMap: Record<string, (typeof cloneMenus)[number]> | null = {};
   const menusList: typeof cloneMenus = [];
 
   cloneMenus.forEach((menu) => {
@@ -67,7 +67,7 @@ export function formatMenus(menus: MenuModel[]) {
   for (const menu of cloneMenus) {
     const parent = menuMap[menu.parentId as unknown as string];
     if (parent) {
-      parent.children = parent.children || [];
+      parent.children = parent.children ?? [];
       parent.children.push(menu);
     } else {
       menusList.push(menu);

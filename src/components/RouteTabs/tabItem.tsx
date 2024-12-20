@@ -110,7 +110,9 @@ const KeepAliveTab: FC<KeepAliveTabProps> = (props) => {
             {...listeners}
             className={clsx("move swiper-no-swiping")}
             icon="mdi:cursor-move"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
           />
         )}
         <span className="flex-1 text-xs">{title}</span>

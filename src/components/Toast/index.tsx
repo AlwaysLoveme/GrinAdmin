@@ -24,12 +24,20 @@ const ToastComponent = () => {
   const { message: antdMessage, modal: antdModal, notification: antdNotification } = App.useApp();
 
   const handleMessage = useMemoizedFn<typeof message>((content, options) => {
-    const { type = "success", duration: messageDuration, ...rest } = options || {};
+    const { type = "success", duration: messageDuration, ...rest } = options ?? {};
     const duration = messageDuration ?? (type === "loading" ? 0 : 5);
     const messageInstance = antdMessage.open({
       key: "message",
       type,
-      content: <MessageContent onClose={() => messageInstance()}>{content}</MessageContent>,
+      content: (
+        <MessageContent
+          onClose={() => {
+            messageInstance();
+          }}
+        >
+          {content}
+        </MessageContent>
+      ),
       duration,
       ...rest,
       className: "custom-message",
@@ -45,7 +53,7 @@ const ToastComponent = () => {
       key: notificationKey,
       title = "提示",
       ...restOptions
-    } = options || {};
+    } = options ?? {};
     const key = notificationKey ?? (typeof tag === "string" ? tag : "");
     antdNotification.open({
       message: (

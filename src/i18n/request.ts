@@ -9,13 +9,11 @@ export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale;
 
   // Ensure that a valid locale is used
-  if (!locale || !routing.locales.includes(locale as any)) {
+  if (!locale || !routing.locales.includes(locale)) {
     locale = routing.defaultLocale;
   }
 
-  console.log("locale", locale);
-
-  if (!locales.includes(locale as any)) notFound();
+  if (!locales.includes(locale)) notFound();
 
   const response = await serverFetch(`/get-locale-config`, {
     getOriginResponse: true,
@@ -24,7 +22,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     },
   });
   if (!response.ok) notFound();
-  const messages = await response.json();
+  const messages = (await response.json()) as Record<string, any>;
 
   return {
     locale,

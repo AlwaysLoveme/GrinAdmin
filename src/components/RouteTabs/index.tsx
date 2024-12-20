@@ -70,9 +70,8 @@ const KeepAliveTabs: FC = () => {
       if (index > -1) {
         const currentTab = tabs[index];
         for (const tab of tabs) {
-          if (tab.name === name) {
-            if (pathname !== tab.path) navigate.replace(tab.path);
-            continue;
+          if (tab.name === name && pathname !== tab.path) {
+            navigate.replace(tab.path);
           }
         }
         tabs.splice(0, tabs.length, currentTab);

@@ -14,13 +14,11 @@ export default function middleware(request: NextRequest) {
       break;
     }
   }
-  console.log(pathname, "===========");
   response.cookies.set("locale", currentLocale);
   return response;
 }
 
 export const config = {
-  // Match only internationalized pathnames
   matcher: [
     "/",
     "/(zh-cn|en-us)/:path*",

@@ -57,7 +57,7 @@ class HttpClient {
    * @param options - 请求配置，同 fetch 的 RequestInit
    */
   async request<T = IObject>(url: string, data: RequestData = {}, options?: RequestOptions) {
-    const { successMessage, getOriginResponse = false, ...userOptions } = options || {};
+    const { successMessage, getOriginResponse = false, ...userOptions } = options ?? {};
 
     const traceId = uuidV4();
     const requestOptions: RequestInit = {
@@ -123,9 +123,9 @@ class HttpClient {
     return response;
   }
   handleErrorResponse(_response: Response) {
-    // console.log(response);
+    // console.log(_response);
   }
-  handleResponse(options: {
+  handleResponse(_options: {
     response: Response;
     successMessage?: string;
     traceId: string;
@@ -140,5 +140,5 @@ class HttpClient {
 }
 
 const httpClient = new HttpClient("/api");
-export const serverClient = new HttpClient(process.env.NEXT_PUBLIC_SERVER_API!);
+export const serverClient = new HttpClient(process.env.NEXT_PUBLIC_SERVER_API ?? "");
 export default httpClient;

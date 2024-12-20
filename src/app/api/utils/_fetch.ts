@@ -1,18 +1,18 @@
 import { cookies } from "next/headers";
 import { type NextRequest } from "next/server";
 
-export type HttpResponse<T = any> = {
+export interface HttpResponse<T = any> {
   code?: number;
   msg?: string;
   data: T;
-};
-export type RequestOptions = {
+}
+export interface RequestOptions {
   data?: Record<string, any> | FormData;
   getOriginResponse?: boolean;
   nextRequest?: NextRequest;
   baseURL?: string;
   requestInit?: Omit<RequestInit, "body">;
-};
+}
 
 export async function serverFetch(
   url: string,
@@ -41,7 +41,7 @@ export async function serverFetch<T = any>(url: string, opt: RequestOptions = {}
       "content-type": "application/json",
     },
   };
-  let requestUrl = `${baseURL}${url}`;
+  let requestUrl = `${baseURL?.toString() ?? ""}${url}`;
   const mergedRequestInit: RequestInit = {
     ...defaultRequestInit,
     ...requestInit,
