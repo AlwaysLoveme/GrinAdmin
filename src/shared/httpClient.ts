@@ -11,7 +11,7 @@ export type RequestOptions = {
    */
   successMessage?: string;
 } & Omit<RequestInit, "body">;
-export type RequestData = IObject | FormData | null;
+export type RequestData = Record<string, any> | FormData | null;
 
 export const errorMsgRecord: Record<number, string> = {
   500: "啊哦，服务出错啦，请稍后再试",
@@ -45,7 +45,7 @@ class HttpClient {
       getOriginResponse: true;
     },
   ): Promise<Response>;
-  async request<T = IObject>(
+  async request<T = Grin.IObject>(
     url: string,
     data?: RequestData,
     options?: RequestOptions,
@@ -56,7 +56,7 @@ class HttpClient {
    * @param data - 请求数据
    * @param options - 请求配置，同 fetch 的 RequestInit
    */
-  async request<T = IObject>(url: string, data: RequestData = {}, options?: RequestOptions) {
+  async request<T = Grin.IObject>(url: string, data: RequestData = {}, options?: RequestOptions) {
     const { successMessage, getOriginResponse = false, ...userOptions } = options ?? {};
 
     const traceId = uuidV4();
@@ -77,7 +77,7 @@ class HttpClient {
 
     let requestURL = url;
     if (requestOptions.method?.toUpperCase() === "GET" && data) {
-      const params = new URLSearchParams(data as IObject);
+      const params = new URLSearchParams(data as Grin.IObject);
       requestURL = params.toString() ? `${requestURL}?${params.toString()}` : requestURL;
     }
     const formatURL = `${this.baseUrl}${requestURL}`;
@@ -110,7 +110,7 @@ class HttpClient {
         traceId,
         requestInit: {
           url: formatURL,
-          body: requestOptions.body as IObject,
+          body: requestOptions.body as Grin.IObject,
         },
         fetchTime,
       });
@@ -131,7 +131,7 @@ class HttpClient {
     traceId: string;
     requestInit: {
       url: string;
-      body: IObject;
+      body: Grin.IObject;
     };
     fetchTime: number;
   }) {

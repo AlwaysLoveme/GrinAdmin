@@ -6,7 +6,7 @@ export const cloneDeep = <T>(data: T) => lodashClone(data);
 /**
  * 去除对象中键值为 null, undefined, 同时去除字符串首尾所有空格
  */
-export const nonNullableObject = <T extends IObject>(record: T): T => {
+export const nonNullableObject = <T extends Grin.IObject>(record: T): T => {
   if (!record) return {} as T;
   const cloneObject = cloneDeep(record);
   const handleObject = <P>(value: P): P => {
@@ -18,7 +18,7 @@ export const nonNullableObject = <T extends IObject>(record: T): T => {
       return value.map(handleObject).filter((i) => i !== null && i !== undefined && i !== "") as P;
     }
     if (value !== null && typeof value === "object") {
-      return Object.entries(value).reduce<IObject>((acc, [key, value]) => {
+      return Object.entries(value).reduce<Grin.IObject>((acc, [key, value]) => {
         const cleanedValue = handleObject(value);
         if (
           cleanedValue !== null &&

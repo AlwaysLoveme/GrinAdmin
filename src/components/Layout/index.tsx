@@ -2,6 +2,7 @@
 import LayoutAside from "./Aside";
 import Header from "./Header";
 import RouteTabs from "./RouteTabs";
+import RouteTabsProvider from "./RouteTabs/routeContext";
 
 import type { FC, PropsWithChildren } from "react";
 
@@ -13,7 +14,9 @@ const RootLayout: FC<PropsWithChildren> = (props) => {
       </aside>
       <main className="flex-1 overflow-hidden h-full flex flex-col">
         <Header />
-        <RouteTabs {...props} />
+        <RouteTabsProvider outlet={props.children}>
+          <RouteTabs {...props} />
+        </RouteTabsProvider>
       </main>
     </section>
   );

@@ -97,6 +97,7 @@ export default tsEslint.config(
           ignoreRestSiblings: true,
         },
       ],
+      "@typescript-eslint/no-confusing-void-expression": 0,
     },
   },
 );

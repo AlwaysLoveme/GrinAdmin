@@ -23,7 +23,6 @@ const MenuArea: FC = () => {
     openKeys: [],
   });
   useEffect(() => {
-    console.log(pathname);
     setMenuKeys({
       selectedKeys: [pathname],
       openKeys: [],
