@@ -14,6 +14,8 @@ const nextConfig = {
     loader: "custom",
     loaderFile: "./scripts/image-loader.js",
   },
+  allowedDevOrigins: ['local-origin.dev', '*.local-origin.dev'],
+  turbopack: {}
 };
 
 export default withNextIntl(nextConfig);
